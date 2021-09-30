@@ -1,7 +1,7 @@
 import Grid from "@material-ui/core/Grid"
 import React, { useContext } from "react"
 import { BookContext } from "../contexts/bookContext"
-import { View, Text, StyleSheet } from "react-native";
+import {View, Text, StyleSheet, ScrollView} from "react-native";
 import BookCard from "./BookCard"
 import BookPage from "../screens/BookPage";
 

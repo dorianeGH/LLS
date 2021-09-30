@@ -43,7 +43,7 @@ function Dropdown() {
     console.log(selectedLevel)
 
     return (
-        <View>
+        <View style={styles.picker}>
         <Picker
             selectedValue={selectedLevel}
             style={{height: 20, width: 40}}
@@ -62,14 +62,15 @@ function Dropdown() {
         </Picker>
         </View>
     );
-
-    const styles = StyleSheet.create({
-        test: {
-            flex: 1,
-            paddingTop: 40,
-            alignItems: 'center',
-        },
-    });
 }
 
+const styles = StyleSheet.create({
+    picker: {
+        flex: 1,
+        paddingTop: 40,
+        alignItems: 'center',
+    },
+});
 export default Dropdown
+
+

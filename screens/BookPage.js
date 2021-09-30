@@ -1,7 +1,7 @@
 import React from "react";
 import {BookContext} from '../contexts/bookContext'
 import {useContext} from "react";
-import {View, Text, StyleSheet, SafeAreaView} from "react-native";
+import {View, Text, StyleSheet, SafeAreaView, Dimensions} from "react-native";
 import BookCard from "../components/BookCard";
 import BookList from "../components/BookList";
 import Dropdown from "../components/Dropdown";
@@ -43,7 +43,9 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: "center",
-        justifyContent: 'center'
+        justifyContent: 'center',
+        width :'100%',
+        height : Dimensions.get('window').height,
     }
 });
 
