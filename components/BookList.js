@@ -9,6 +9,7 @@ const BookList = () => {
     const { bookList } = useContext(BookContext)
 
     return (
+        <ScrollView>
         <View style ={styles.container}>
             <View style ={styles.item}>
             {bookList.map(({ id, displayTitle, url, valid }) => (
@@ -16,6 +17,7 @@ const BookList = () => {
                 ))}
             </View>
         </View>
+        </ScrollView>
     )
 }
 
@@ -26,9 +28,14 @@ const styles = StyleSheet.create({
         flexWrap: 'wrap',
         alignItems: "center",
         justifyContent:'center',
+        marginTop: 20,
+        backgroundColor:'brown'
         },
+
     item: {
-        width: '50%'
+        width: '100%',
+        alignItems:'center',
+        marginTop: 20
     }
 })
 export default BookList

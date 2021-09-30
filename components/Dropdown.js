@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useCallback} from "react"
+import React, {useState, useEffect, useCallback, useRef} from "react"
 import {BookContext} from "../contexts/bookContext"
 import {useContext} from "react"
 import axios from "axios"
@@ -40,37 +40,45 @@ function Dropdown() {
     }, [init])
 
 
-    console.log(selectedLevel)
-
     return (
-        <View style={styles.picker}>
+        <View style={styles.container}>
         <Picker
             selectedValue={selectedLevel}
-            style={{height: 20, width: 40}}
             onValueChange={(itemValue, itemIndex) => {
                 setSelectedLevel(itemValue);
             }}
+            style={styles.dropdown}
         >
             <Picker.Item label="All" value="All">
                 All
             </Picker.Item>
             {levels.map(level => (
-                <Picker.Item key={level.id} label={level.name} value={level.name}>
-                    {level.name}
-                </Picker.Item>
+                <Picker.Item key={level.name} label={level.name} value={level.name}/>
             ))}
         </Picker>
         </View>
     );
+
 }
 
 const styles = StyleSheet.create({
-    picker: {
-        flex: 1,
-        paddingTop: 40,
-        alignItems: 'center',
+    container: {
+        backgroundColor:'pink',
+        marginTop:40,
+        alignItems: "center",
+        justifyContent: 'flex-start',
+        width :'100%',
     },
+    dropdown:{
+        color: 'black',
+        width: 200,
+        height: 20,
+        justifyContent:"center",
+        paddingBottom: 100
+    }
 });
+
+
 export default Dropdown
 
 

@@ -1,7 +1,7 @@
 import React from "react";
 import {BookContext} from '../contexts/bookContext'
 import {useContext} from "react";
-import {View, Text, StyleSheet, SafeAreaView, Dimensions} from "react-native";
+import {View, Text, StyleSheet, SafeAreaView, Dimensions, ScrollView} from "react-native";
 import BookCard from "../components/BookCard";
 import BookList from "../components/BookList";
 import Dropdown from "../components/Dropdown";
@@ -13,7 +13,7 @@ const BookPage = () => {
         .filter((book) => book.levels.map((l) => l?.name).includes(selectedLevel))
 
     return (
-        <SafeAreaView style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+        <SafeAreaView style={styles.container}>
             <Dropdown/>
             <Text style={styles.titleText}>Book Lists</Text>
 
@@ -29,6 +29,7 @@ const BookPage = () => {
                         valid={book.valid}
                     />
                 )))}
+
         </SafeAreaView>
     )
 }
@@ -38,14 +39,15 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: "bold",
         alignItems: "center",
-        justifyContent: 'center'
+        justifyContent: 'center',
+        marginVertical: 20,
     },
     container: {
         flex: 1,
         alignItems: "center",
         justifyContent: 'center',
         width :'100%',
-        height : Dimensions.get('window').height,
+        height : '100%'
     }
 });
 
