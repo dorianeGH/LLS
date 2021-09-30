@@ -21,13 +21,9 @@ const styles = StyleSheet.create({
     container: {
         backgroundColor: 'skyblue',
         margin: 5,
-        justifyContent: "space-between",
-        width: '50%',
-    },
-    card: {
-        backgroundColor: 'black',
-        width: '50%',
-        height: '50%'
+        width: '100%',
+
+
     }
 });
 

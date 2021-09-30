@@ -14,8 +14,9 @@ const BookPage = () => {
 
     return (
         <SafeAreaView style={styles.container}>
-            <Dropdown/>
             <Text style={styles.titleText}>Book Lists</Text>
+            <Dropdown/>
+            <ScrollView>
 
             {!filteredBookByLevel.length ? (
                 <BookList bookList={bookList}/>
@@ -29,6 +30,7 @@ const BookPage = () => {
                         valid={book.valid}
                     />
                 )))}
+            </ScrollView>
 
         </SafeAreaView>
     )
