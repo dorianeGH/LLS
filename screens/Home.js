@@ -1,7 +1,7 @@
 import React from "react";
 import {BookContext} from '../contexts/bookContext'
 import {useContext} from "react";
-import {View, Text, StyleSheet,TouchableOpacity, Image, SafeAreaView, Dimensions} from "react-native";
+import {View, Text, StyleSheet, TouchableOpacity, Image, SafeAreaView, Dimensions, FlatList} from "react-native";
 
 
 const Home = () => {
@@ -34,30 +34,48 @@ const Home = () => {
         )
     }
 
+    const renderBookList = () => {
+        const renderItem = ({item}) => {
+
+            return(
+            <TouchableOpacity
+                style={{marginHorizontal: 20}}
+                onPress={() => console.log('works')}
+            >
+                <View>
+                    <Image source={item.url}
+                           resizeMode='cover'
+                           style={{
+                               width: 80,
+                               height: 100,
+                               borderRadius: 20
+                           }}
+                    />
+                <Text>{item.displayTitle}</Text>
+                </View>
+            </TouchableOpacity>
+        )
+        }
+        return (
+            <FlatList
+                data={bookList}
+                renderItem={renderItem}
+                keyExtractor={item => `${item.id}`}
+                contentContainerStyle={{
+                    paddingHorizontal: 20,
+                    paddingBottom: 30
+                }}
+            />
+        )
+    }
 
     return (
-        <SafeAreaView style={styles.container}>
+        <SafeAreaView style={{flex: 1}}>
             {renderHeader()}
-
+            {renderBookList()}
         </SafeAreaView>
     )
 }
 
-const styles = StyleSheet.create({
-    titleText: {
-        fontSize: 20,
-        fontWeight: "bold",
-        alignItems: "center",
-        justifyContent: 'center',
-        marginVertical: 20,
-    },
-    container: {
-        flex: 1,
-        alignItems: "center",
-        justifyContent: 'center',
-        width :'100%',
-        height : '100%'
-    }
-});
 
 export default Home;

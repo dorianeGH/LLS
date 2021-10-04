@@ -5,7 +5,7 @@ import { Button } from 'react-native-elements';
 import {View, Text, FlatList, Image, StyleSheet} from "react-native";
 import {useRoute} from "@react-navigation/native";
 import axios from "axios";
-import BookCard from "../components/BookCard";
+
 
 const BookDetails = ({ navigation }) => {
     const { bookList } = useContext(BookContext);
