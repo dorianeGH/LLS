@@ -2,17 +2,18 @@ import React from "react";
 import { BookContext } from "../contexts/bookContext";
 import { useEffect, useContext, useState } from "react";
 import { Button } from 'react-native-elements';
-import { View, Text } from "react-native";
+import {View, Text, FlatList, Image, StyleSheet} from "react-native";
 import {useRoute} from "@react-navigation/native";
 import axios from "axios";
 import BookCard from "../components/BookCard";
 
-export default function BookDetails({ navigation }) {
+const BookDetails = ({ navigation }) => {
     const { bookList } = useContext(BookContext);
     const route = useRoute();
     const bookId = route.params.id
 
     const [chapterList, setChapterList] = useState([]);
+
 
 
     useEffect(() => {
@@ -41,6 +42,10 @@ export default function BookDetails({ navigation }) {
         });
     }, []);
 
+
+
+
+
     return (
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
             <Text>
@@ -48,14 +53,50 @@ export default function BookDetails({ navigation }) {
                     .filter(({ id }) => id === bookId)
                     .map((id) => id.displayTitle)}
             </Text>
-            <Text>Chapters</Text>
-            <View>
-                {chapterList.map(({ id, title, url, valid }) => (
-                    valid ?
-                    <BookCard key={id} displayTitle={title} {...{ url, id, valid }} /> : null
-                ))}
+
+            <View style={styles.container}>
+                <Text style={styles.title}>Chapters</Text>
+    {/*            {chapterList.map(({ id, title, url, valid }) => (
+                    <FlatList
+                        data={chapterList}
+                        renderItem={({renderItem}) => (
+                            <Image style={styles.image} source={{url}}/>
+                        )}
+                            />
+                ))}*/}
+
+
+                   {/* <FlatList
+                        data={chapterList}
+                        renderItem={({chapter}) => (
+                            <Text style={styles.item}>
+
+                            <Image style={styles.image} source={{url}}/>
+                        )}
+                    />
+                ))}*/}
+
+               {/* {chapterList.map(({ id, title, url, valid }) => (
+                    <BookCard key={id} displayTitle={title} {...{ url, id, valid }} />
+                ))}*/}
                 <Button title="Go back" onPress={() => navigation.goBack()} />
             </View>
         </View>
     );
 }
+const styles = StyleSheet.create({
+    container: {
+        flex : 1,
+        padding : 20,
+    },
+    image: {
+        width: 150,
+        height : 250,
+        resizeMode : 'cover',
+        borderRadius : 5,
+        margin : 5,
+    },
+
+});
+
+export default BookDetails;

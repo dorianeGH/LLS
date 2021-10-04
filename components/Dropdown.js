@@ -5,11 +5,12 @@ import axios from "axios"
 import {View, StyleSheet} from "react-native";
 import {Picker} from '@react-native-picker/picker';
 import {brown} from "@material-ui/core/colors";
+import _ from "lodash";
 
 
 function Dropdown() {
     const [levels, setLevels] = useState([])
-    const {selectedLevel, setSelectedLevel} = useContext(BookContext)
+    const {selectedLevel, setSelectedLevel, bookList, selectedSubject, setSelectedSubject} = useContext(BookContext)
 
     const init = useCallback(async () => {
         axios({
@@ -40,6 +41,14 @@ function Dropdown() {
     }, [init])
 
 
+    // get the subject(s) of each book
+    const subjects = bookList.map((book) =>
+        book.subjects.map((subject) => subject.name)).flat()
+
+    //remove duplicate values
+    const uniqueSubjects = _.uniq(subjects)
+    // console.log(uniqueSubjects)
+
     return (
         <View style={styles.container}>
         <Picker
@@ -56,9 +65,23 @@ function Dropdown() {
                 <Picker.Item key={level.name} label={level.name} value={level.name}/>
             ))}
         </Picker>
+
+{/*            <Picker
+                selectedValue={selectedSubject}
+                onValueChange={(itemValue, itemIndex) => {
+                    setSelectedSubject(itemValue);
+                }}
+                style={styles.dropdown}
+            >
+                <Picker.Item label="All" value="All">
+                    All
+                </Picker.Item>
+                {uniqueSubjects.map(subject => (
+                    <Picker.Item key={subject} label={subject} value={subject}/>
+                ))}
+            </Picker>*/}
         </View>
     );
-
 }
 
 const styles = StyleSheet.create({
@@ -74,7 +97,8 @@ const styles = StyleSheet.create({
         width: 200,
         height: 20,
         justifyContent:"center",
-        paddingBottom: 100
+        paddingBottom: 100,
+        marginTop : 50
     }
 });
 

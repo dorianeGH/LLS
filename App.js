@@ -8,19 +8,16 @@ import BookContextProvider from "./contexts/bookContext";
 
 const Stack = createNativeStackNavigator();
 
-function App() {
-
-    return (
-        <NavigationContainer>
-            <BookContextProvider>
+const App = () => (
+    <BookContextProvider>
+    <NavigationContainer>
             <Stack.Navigator>
-                <Stack.Screen name="BookPage" component={BookPage} />
-                <Stack.Screen name="BookDetails" component={BookDetails} />
+                <Stack.Screen name="BookPage" component={BookPage}/>
+                <Stack.Screen name="BookDetails" component={BookDetails}/>
             </Stack.Navigator>
-            </BookContextProvider>
-        </NavigationContainer>
+    </NavigationContainer>
+    </BookContextProvider>
 
-    );
-}
+);
 
 export default App;

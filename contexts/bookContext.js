@@ -7,7 +7,7 @@ export const BookContext = createContext();
 export default function EventContextProvider({ children }) {
     const [bookList, setBookList] = useState([])
     const [selectedLevel, setSelectedLevel] = useState("All")
-
+    const [selectedSubject, setSelectedSubject] = useState("All")
 
     const init = useCallback(async () => {
         try {
@@ -46,7 +46,7 @@ export default function EventContextProvider({ children }) {
     }, [])
 
     return (
-        <BookContext.Provider value={{ bookList, setBookList, selectedLevel, setSelectedLevel }}>
+        <BookContext.Provider value={{ bookList, setBookList, selectedSubject, setSelectedSubject, selectedLevel, setSelectedLevel }}>
             {children}
         </BookContext.Provider>
     )

@@ -12,8 +12,8 @@ const BookList = () => {
 
         <View style ={styles.container}>
             <View style ={styles.item}>
-            {bookList.map(({ id, displayTitle, url, valid }) => (
-                <BookCard key={id} {...{ id, displayTitle, url, valid}} />
+            {bookList.map(({ id, displayTitle, url, valid, subjects }) => (
+                <BookCard key={id} {...{ id, displayTitle, url, valid, subjects}} />
                 ))}
             </View>
         </View>
