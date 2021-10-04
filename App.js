@@ -11,9 +11,9 @@ const App = () => (
     <BookContextProvider>
     <NavigationContainer>
             <Stack.Navigator
-            /*screenOptions={{headerShown: false
-            }}
-            initialRouteName={'Home'}>*/>
+                screenOptions={{headerShown: false
+                }}
+                initialRouteName={'Home'}>
                 <Stack.Screen name="Home" component={Home}/>
                 <Stack.Screen name="BookDetails" component={BookDetails}/>
             </Stack.Navigator>

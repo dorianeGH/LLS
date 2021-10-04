@@ -15,19 +15,28 @@ const Home = () => {
             <Image source={require('../assets/favicon.png')}
                    resizeMode='contain'
                    style={{
-                       height: 30,
-                   width: 30
+                       height: 30, width: 30
                    }} />
             </TouchableOpacity>
             <View style={{flex: 1, alignItems:'center', justifyContent:'center'}}>
+                <View
+                style={{
+                    width:'70%',
+                    height:'100%',
+                    backgroundColor:' gray',
+                    alignItems:'center',
+                    justifyContent:'center'
+                }}>
                 <Text>Le Livre Scolaire</Text>
+                </View>
             </View>
         </View>
         )
     }
+
+
     return (
         <SafeAreaView style={styles.container}>
-            <Text>Book</Text>
             {renderHeader()}
 
         </SafeAreaView>
