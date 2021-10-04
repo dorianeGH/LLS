@@ -2,9 +2,10 @@ import React from "react";
 import {BookContext} from '../contexts/bookContext'
 import {useContext} from "react";
 import {View, Text, StyleSheet, TouchableOpacity, Image, SafeAreaView, Dimensions, FlatList} from "react-native";
+import Dropdown from "../components/Dropdown";
 
 
-const Home = () => {
+const Home = ({navigation}) => {
     const {selectedLevel, selectedSubject, bookList} = useContext(BookContext);
 
     const renderHeader = () => {
@@ -40,7 +41,9 @@ const Home = () => {
             return(
             <TouchableOpacity
                 style={{marginHorizontal: 20}}
-                onPress={() => console.log('works')}
+                onPress={() => item.valid == true && navigation.navigate('BookDetails', {
+                    book: item
+                })}
             >
                 <View>
                     <Image source={item.url}
@@ -52,6 +55,14 @@ const Home = () => {
                            }}
                     />
                 <Text>{item.displayTitle}</Text>
+                <Text>{item.valid == true ? 'yes': 'no'}</Text>
+
+                    <View>
+                        {item.subjects.map((v, i) => (
+                                <Text>{v.name}</Text>
+                        ))}
+                    </View>
+
                 </View>
             </TouchableOpacity>
         )
@@ -72,8 +83,13 @@ const Home = () => {
 
     return (
         <SafeAreaView style={{flex: 1}}>
-            {renderHeader()}
-            {renderBookList()}
+            <View>
+                {renderHeader()}
+            </View>
+                <Dropdown/>
+            <View>
+                {renderBookList()}
+            </View>
         </SafeAreaView>
     )
 }

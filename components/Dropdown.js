@@ -4,7 +4,6 @@ import {useContext} from "react"
 import axios from "axios"
 import {View, StyleSheet} from "react-native";
 import {Picker} from '@react-native-picker/picker';
-import {brown} from "@material-ui/core/colors";
 import _ from "lodash";
 
 
@@ -66,20 +65,6 @@ function Dropdown() {
             ))}
         </Picker>
 
-{/*            <Picker
-                selectedValue={selectedSubject}
-                onValueChange={(itemValue, itemIndex) => {
-                    setSelectedSubject(itemValue);
-                }}
-                style={styles.dropdown}
-            >
-                <Picker.Item label="All" value="All">
-                    All
-                </Picker.Item>
-                {uniqueSubjects.map(subject => (
-                    <Picker.Item key={subject} label={subject} value={subject}/>
-                ))}
-            </Picker>*/}
         </View>
     );
 }

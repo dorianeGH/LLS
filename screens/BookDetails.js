@@ -7,21 +7,21 @@ import {useRoute} from "@react-navigation/native";
 import axios from "axios";
 
 
-const BookDetails = ({ navigation }) => {
+const BookDetails = ({ route, navigation }) => {
     const { bookList } = useContext(BookContext);
-    const route = useRoute();
     const bookId = route.params.id
-
     const [chapterList, setChapterList] = useState([]);
 
 
 
     useEffect(() => {
-        axios({
-            url: "https://api-dev.lelivrescolaire.fr/graphql",
-            method: "post",
-            data: {
-                query: `query($bookId:Int){
+        const fetchChapters = async () => {
+            try {
+                const result = await axios({
+                    url: "https://api-dev.lelivrescolaire.fr/graphql",
+                    method: "post",
+                    data: {
+                        query: `query($bookId:Int){
           viewer {
             chapters(bookIds:[$bookId]) {
                   hits {
@@ -33,13 +33,17 @@ const BookDetails = ({ navigation }) => {
               }
             }
           }`,
-                variables: {
-                    bookId,
-                },
-            },
-        }).then((result) => {
-            setChapterList(result?.data?.data?.viewer?.chapters?.hits);
-        });
+                        variables: {
+                            bookId,
+                        },
+                    },
+                });
+                setChapterList(result?.data?.data?.viewer?.chapters?.hits)
+            } catch (e) {
+                console.log(e)
+            }
+        }
+        fetchChapters()
     }, []);
 
 
