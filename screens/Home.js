@@ -56,6 +56,7 @@ const Home = () => {
             </TouchableOpacity>
         )
         }
+
         return (
             <FlatList
                 data={bookList}
